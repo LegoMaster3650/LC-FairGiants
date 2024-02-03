@@ -2,12 +2,12 @@
 # Fair Giants
 Have you ever been running from a giant on a foggy moon and thought to yourself, "wait, how did he see me?"  
 Have you ever been sitting in the ship alone, waiting for a giant to wander away, thinking "didn't this specifically get fixed?"  
-Have you ever narrowly escaped a giant, only for it to immediately re-aggro the instant it catches another glimpse of you?
+Have you ever narrowly escaped a giant, only for it to immediately re-aggro the instant it catches another glimpse of you?  
 If you've ever asked any of those questions and want a solution, this mod is for you!  
 
 # Info
-Source code at <https://github.com/LegoMaster3650/LC-FairGiants>
-Report bugs, suggestions, concerns at <https://github.com/LegoMaster3650/LC-FairGiants/issues>
+Source code at <https://github.com/LegoMaster3650/LC-FairGiants>  
+Report bugs, suggestions, concerns at <https://github.com/LegoMaster3650/LC-FairGiants/issues>  
 
 ## Vision
 Giants will now have their vision range divided by 3 (configurable) when on a foggy or snowy moon (also configurable). This is because you cannot see more than 4 feet in front of you, so neither should they!  
