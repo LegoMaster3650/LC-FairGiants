@@ -48,7 +48,7 @@ public class ForestGiantAIPatch {
 		CodeMatcher matcher = new CodeMatcher(instructions)
 			// Match method call for EnemyAI::GetAllPlayersInLineOfSight
 			.MatchForward(true,
-				new CodeMatch(OpCodes.Call, AccessTools.Method(typeof(EnemyAI), "HasLineOfSightToPosition"))
+				new CodeMatch(OpCodes.Call, AccessTools.Method(typeof(EnemyAI), "CheckLineOfSightForPosition"))
 			)
 
 			// Match argument loading ldc.i4.s aka range
