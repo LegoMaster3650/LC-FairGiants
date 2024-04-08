@@ -21,6 +21,7 @@ public class ConfigSync {
 	public bool reduceVisionFog;
 	public bool reduceVisionSnow;
 	public int giantFogDivisor;
+	public string snowyPlanets;
 
 	// Ship
 	public bool enhancedAntiCamp;
@@ -34,6 +35,7 @@ public class ConfigSync {
 		reduceVisionFog = Config.file_reduceVisionFog.Value;
 		reduceVisionSnow = Config.file_reduceVisionSnow.Value;
 		giantFogDivisor = Config.file_giantFogDivisor.Value;
+		snowyPlanets = Config.file_snowyPlanets.Value;
 
 		enhancedAntiCamp = Config.file_enhancedAntiCamp.Value;
 		randomWander = Config.file_randomWander.Value;
@@ -68,6 +70,7 @@ public class ConfigSync {
 	public static void Reset() {
 		Synced = false;
 		Config.Instance = Config.Default;
+		Config.ConfigChanged();
 	}
 
 	public static void RequestSync() {
@@ -129,5 +132,6 @@ public class ConfigSync {
 		
 		Plugin.Log("Config values synced with host!");
 		Synced = true;
+		Config.ConfigChanged();
 	}
 }

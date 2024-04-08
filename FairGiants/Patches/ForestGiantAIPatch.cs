@@ -65,7 +65,8 @@ public class ForestGiantAIPatch {
 	}
 
 	public static int ClampRange(int range) {
-		return ((TimeOfDay.Instance.currentLevelWeather == LevelWeatherType.Foggy && Config.Instance.reduceVisionFog) || (TimeOfDay.Instance.currentLevel.levelIncludesSnowFootprints && Config.Instance.reduceVisionSnow)) ? range / Config.Instance.giantFogDivisor : range;
+		Plugin.Log("Planet " + TimeOfDay.Instance.currentLevel.PlanetName + " is " + (Config.IsSnowyPlanet(TimeOfDay.Instance.currentLevel.PlanetName) ? "" : "not ") + "snowy");
+		return ((Config.Instance.reduceVisionFog && TimeOfDay.Instance.currentLevelWeather == LevelWeatherType.Foggy) || (Config.Instance.reduceVisionSnow && Config.IsSnowyPlanet(TimeOfDay.Instance.currentLevel.PlanetName))) ? range / Config.Instance.giantFogDivisor : range;
 	}
 
 	/*
@@ -191,8 +192,8 @@ public class ForestGiantAIPatch {
 	}
 
 	public static void LowerAllAggro(ForestGiantAI ai) {
-		if (!(Config.Instance.stealthDecaysWhen == PatchApplyLevel.Always || (Config.Instance.stealthDecaysWhen == PatchApplyLevel.Solo && StartOfRound.Instance.connectedPlayersAmount <= 0))) return;
-
+		if (ai.currentBehaviourStateIndex == 0 && !(Config.Instance.stealthDecaysWhen == PatchApplyLevel.Always || (Config.Instance.stealthDecaysWhen == PatchApplyLevel.Solo && StartOfRound.Instance.connectedPlayersAmount <= 0))) return;
+		
 		for (int i = 0; i < StartOfRound.Instance.allPlayerScripts.Length; i++) {
 			ai.playerStealthMeters[i] = Mathf.Clamp(ai.playerStealthMeters[i] - (Time.deltaTime * Config.Instance.passiveStealthDecay), 0f, 1f);
 		}

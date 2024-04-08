@@ -2,6 +2,7 @@
 using FairGiants;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Unity.Netcode;
 
@@ -15,6 +16,8 @@ public class Config {
 	public static ConfigEntry<bool> file_reduceVisionFog;
 	public static ConfigEntry<bool> file_reduceVisionSnow;
 	public static ConfigEntry<int> file_giantFogDivisor;
+	public static ConfigEntry<string> file_snowyPlanets;
+	public static string[] snowyPlanetsList = ["Dine", "Rend", "Titan"];
 
 	// Ship
 	public static ConfigEntry<bool> file_enhancedAntiCamp;
@@ -42,6 +45,12 @@ public class Config {
 			"GiantFogDivisor",
 			3,
 			"The amount to divide giant sight range by"
+		);
+		file_snowyPlanets = config.Bind(
+			"Vision",
+			"SnowyPlanets",
+			"Dine,Rend,Titan",
+			"Names of planets that should be considered snowy to giants. (Separate with commas, spaces around commas are allowed but will be ignored)"
 		);
 		
 		file_enhancedAntiCamp = config.Bind(
@@ -72,5 +81,36 @@ public class Config {
 
 		Default = new ConfigSync();
 		Instance = new ConfigSync();
+		ConfigChanged();
+
+		config.SettingChanged += new System.EventHandler<SettingChangedEventArgs>(Config.OnSettingChanged);
+	}
+
+	private static void OnSettingChanged(object sender, SettingChangedEventArgs e) => SetConfigChanged();
+
+	private static void SetConfigChanged() {
+		if (NetworkManager.Singleton.IsHost) Instance = new ConfigSync();
+		ConfigChanged();
+	}
+
+	public static void ConfigChanged() {
+		string[] planets = Instance.snowyPlanets.Split(',');
+		for (int i = 0; i < planets.Length; i++) {
+			planets[i] = planets[i].Trim();
+		}
+		snowyPlanetsList = planets;
+
+		Plugin.Log("Configured " + snowyPlanetsList.Aggregate(
+			"[",
+			(prev, name) => (prev + name) + ", ",
+			(prev) => prev + "]"
+		));
+	}
+
+	public static bool IsSnowyPlanet(string name) {
+		foreach (string planet in snowyPlanetsList) {
+			if (name.Contains(planet)) return true;
+		}
+		return false;
 	}
 }
