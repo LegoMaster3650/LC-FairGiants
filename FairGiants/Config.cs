@@ -99,12 +99,6 @@ public class Config {
 			planets[i] = planets[i].Trim();
 		}
 		snowyPlanetsList = planets;
-
-		Plugin.Log("Configured " + snowyPlanetsList.Aggregate(
-			"[",
-			(prev, name) => (prev + name) + ", ",
-			(prev) => prev + "]"
-		));
 	}
 
 	public static bool IsSnowyPlanet(string name) {

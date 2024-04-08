@@ -65,7 +65,6 @@ public class ForestGiantAIPatch {
 	}
 
 	public static int ClampRange(int range) {
-		Plugin.Log("Planet " + TimeOfDay.Instance.currentLevel.PlanetName + " is " + (Config.IsSnowyPlanet(TimeOfDay.Instance.currentLevel.PlanetName) ? "" : "not ") + "snowy");
 		return ((Config.Instance.reduceVisionFog && TimeOfDay.Instance.currentLevelWeather == LevelWeatherType.Foggy) || (Config.Instance.reduceVisionSnow && Config.IsSnowyPlanet(TimeOfDay.Instance.currentLevel.PlanetName))) ? range / Config.Instance.giantFogDivisor : range;
 	}
 
