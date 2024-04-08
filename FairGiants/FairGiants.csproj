@@ -6,8 +6,8 @@
 		<AssemblyTitle>FairGiants</AssemblyTitle>
 		<Copyright>Copyright (c) 2024 LegoMaster3650</Copyright>
 		<Description>Makes forest keepers/giants fairer in lethal company.</Description>
-		<Version>1.1.0</Version>
-		<FileVersion>1.1.0</FileVersion>
+		<Version>1.1.1</Version>
+		<FileVersion>1.1.1</FileVersion>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<LangVersion>latest</LangVersion>
 	</PropertyGroup>
