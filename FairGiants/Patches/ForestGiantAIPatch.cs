@@ -46,7 +46,7 @@ public class ForestGiantAIPatch {
 	[HarmonyTranspiler]
 	public static IEnumerable<CodeInstruction> FearDistancePatch(IEnumerable<CodeInstruction> instructions, ILGenerator generator) {
 		CodeMatcher matcher = new CodeMatcher(instructions)
-			// Match method call for EnemyAI::GetAllPlayersInLineOfSight
+			// Match method call for EnemyAI::CheckLineOfSightForPosition
 			.MatchForward(true,
 				new CodeMatch(OpCodes.Call, AccessTools.Method(typeof(EnemyAI), "CheckLineOfSightForPosition"))
 			)
